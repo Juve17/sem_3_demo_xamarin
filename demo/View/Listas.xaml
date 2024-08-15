@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local="clr-namespace:demo.ViewModel"
+             x:Class="demo.View.Listas">
+    <ContentPage.BindingContext>
+        <local:ListaViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Frame BackgroundColor="SkyBlue" CornerRadius="20" Margin="50">
+
+            <StackLayout Margin="20" >
+                <Label Text="Esto es una lista"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <CollectionView>
+                    <CollectionView.ItemsSource>
+                        <x:Array Type="{x:Type x:String}" >
+                            <x:String>Ejemplo 1</x:String>
+                            <x:String>Ejemplo 2</x:String>
+                        </x:Array>
+                    </CollectionView.ItemsSource>
+                </CollectionView>
+
+                <CollectionView SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged" ItemsSource="{Binding Listas} ">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="Auto,*" ColumnDefinitions="Auto,*" Padding="10">
+                                <Image HeightRequest="60" WidthRequest="60" Aspect="AspectFill" Source="{Binding ImagenUrl}"/>
+                                <Label Grid.Column="1" Text="{Binding Name}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
